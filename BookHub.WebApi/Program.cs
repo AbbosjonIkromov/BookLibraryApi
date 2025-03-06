@@ -28,12 +28,9 @@ namespace BookHub.WebApi
             builder.Services.AddScoped<IValidator<CreateBookDto>, CreateBookDtoValidation>();
             builder.Services.AddScoped<IValidator<UpdateBookDto>, UpdateBookDtoValidation>();
 
-            builder.Services.AddDbContext<BookHubContext>(builder =>
+            builder.Services.AddDbContext<BookHubContext>(options =>
             {
-                var connectionString =
-                    "Host=localhost;Port=5432;Database=book_hub; User Id=postgres;Password=postgresql;";
-
-                builder.UseNpgsql(connectionString)
+                options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
                     .UseSnakeCaseNamingConvention()
                     .AddInterceptors(new AuditInterceptor());
             });
