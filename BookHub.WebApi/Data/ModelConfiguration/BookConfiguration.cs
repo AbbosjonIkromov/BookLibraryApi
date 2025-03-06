@@ -27,7 +27,7 @@ namespace BookHub.WebApi.Data.ModelConfiguration
                 .HasColumnType("varchar")
                 .HasMaxLength(20);
 
-            builder.HasAlternateKey(r => r.ISBN);
+            builder.HasIndex(r => r.ISBN).IsUnique();
 
             builder.Property(b => b.PublishedYear)
                 .HasColumnType("int");
