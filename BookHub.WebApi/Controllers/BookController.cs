@@ -28,7 +28,7 @@ namespace BookHub.WebApi.Controllers
 
             if (!books.Any())
             {
-                return Ok(new List<CreateBookDto>());
+                return Ok(new List<BookDto>());
             }
 
             return Ok(books);
